@@ -1,106 +1,127 @@
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'https://directus.devmed.cz/graphql',
+  uri: "https://directus.devmed.cz/graphql",
   cache: new InMemoryCache(),
 });
 
+{
+  /*  public_from: { _null: false },
+      public_till: { _null: false, _lte: $today }, */
+}
+
 export const GET_BLOGS_LIST = gql`
   query GetBlogs($limit: Int, $offset: Int, $sort: [String!]) {
-    contents(limit: $limit, offset: $offset, sort: $sort) {
-        issue
-        date_updated
-        labels {
+    contents(
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      filter: {
+        public_from: { _null: true }
+        public_till: { _null: true }
+        web: { shortcut: { _eq: "PL" } }
+        translations: { language: { name: { _eq: "Čeština" } } }
+      }
+    ) {
+      issue
+      date_updated
+      public_from
+      public_till
+      labels {
         label {
-            name
+          name
         }
-        }
-        id
-        section {
+      }
+      id
+      section {
         name
-        }
-        specializations {
+      }
+      specializations {
         specialization {
-            name
+          name
         }
-        
-        }
-        theme {
-      name
-    }
-        type {
+      }
+      theme {
         name
-        }
+      }
+      type {
+        name
+      }
+      language {
+        name
+      }
+      web {
+        shortcut
+        name
+      }
+      translations {
         language {
-        name
+          name
         }
-        web {
-        name
-        }
-        translations(sort:$sort ) {
+        content
         name
         image {
-            height
-            width
-            filename_download
-            filename_disk
-            folder
+          height
+          width
+          filename_download
+          filename_disk
+          folder
         }
         perex
-        }
+      }
     }
-}
+  }
 `;
 
 export const GET_SECTIONS_LIST = gql`
   query GetSections($limit: Int!) {
     sections(limit: $limit) {
-    id
-    name
+      id
+      name
+    }
   }
-}
 `;
 export const GET_BLOGS_BY_ID = gql`
   query GetBlogsById($id: ID!) {
     contents_by_id(id: $id) {
-        issue
-        date_updated
-        labels {
+      issue
+      date_updated
+      labels {
         label {
-            name
+          name
         }
-        }
-        id
-        section {
+      }
+      id
+      section {
         name
-        }
-        specializations {
+      }
+      specializations {
         specialization {
-            name
+          name
         }
-        }
-        type {
+      }
+      type {
         name
-        }
-        language {
+      }
+      language {
         name
-        }
-        web {
+      }
+      web {
         name
-        }
-        translations {
-            content
+      }
+      translations {
+        content
         name
         image {
-            height
-            width
-            filename_download
-            filename_disk
-            folder
+          height
+          width
+          filename_download
+          filename_disk
+          folder
         }
+      }
     }
-}
-}
+  }
 `;
 
 export { client };
