@@ -44,10 +44,13 @@ export default async function Home() {
     }
 
     return (
-      <div className="p-8 pb-20 sm:p-20">
+      <div className="p-8 pb-20 sm:p-20 flex justify-center">
         <div className="max-w-4xl w-full">
-          <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
-          
+          <div className='mx-4 my-8 border-b-2 border-gray-200 space-y-4 py-4 '>
+          <p className='text-neutral-400'>proLékaře</p>
+          <h1 className="text-4xl font-bold font-lora">Články</h1>
+          </div>
+
           <div className="space-y-8">
             {data.contents[0] && (
               <LatestBlogCard key={data.contents[0].id} post={data.contents[0]} />

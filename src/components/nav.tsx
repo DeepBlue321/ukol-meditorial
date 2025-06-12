@@ -11,7 +11,7 @@ export default async function Nav() {
   });
 
   return (
-    <nav className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4 p-4 bg-white shadow-sm">
+    <nav className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4 p-4 bg-white shadow-sm px-12">
       
         <Link href="/" className="flex items-center">
           <img src="/logoPL.png" alt="Logo" className="h-8 w-auto" />
