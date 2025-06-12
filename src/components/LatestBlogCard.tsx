@@ -41,8 +41,6 @@ export default function LatestBlogCard({ post }: LatestBlogCardProps) {
           <div className="flex flex-col justify-between items-start mb-4">
             <div className="flex items-center text-sm text-gray-500">
               <span>{new Date(post.date_updated).toLocaleDateString()}</span>
-              <span className="mx-2">•</span>
-              <span>{post.theme?.name ?? "Reprodukce"}</span>
             </div>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">{post.translations[0]?.perex}</p>
