@@ -6,7 +6,7 @@ const client = new ApolloClient({
 });
 
 export const GET_BLOGS_LIST = gql`
-  query GetBlogs($limit: Int!, $offset: Int!, $sort: [String!]) {
+  query GetBlogs($limit: Int, $offset: Int, $sort: [String!]) {
     contents(limit: $limit, offset: $offset, sort: $sort) {
         issue
         date_updated
