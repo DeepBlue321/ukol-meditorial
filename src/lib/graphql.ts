@@ -6,7 +6,7 @@ const client = new ApolloClient({
 });
 
 {
-  /*  public_from: { _null: false },
+  /* Should be:  public_from: { _null: false },
       public_till: { _null: false, _lte: $today }, */
 }
 
